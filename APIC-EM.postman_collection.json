@@ -1,0 +1,90 @@
+{
+	"variables": [],
+	"info": {
+		"name": "APIC-EM",
+		"_postman_id": "efc4cac7-53f0-f12e-f603-323d7ad8e020",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get a Ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody)",
+							"postman.setEnvironmentVariable(\"token\", jsonData.response.serviceTicket);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://{{apic_host}}/api/v1/ticket",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic Z3Vlc3Q6Z3Vlc3Q=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"password\": \"{{password}}\"\n}"
+				},
+				"description": "\t\t\t"
+			},
+			"response": []
+		},
+		{
+			"name": "List Network Devices",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody)",
+							"postman.setEnvironmentVariable(\"token\", jsonData.response.serviceTicket);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://{{apic_host}}/api/v1/network-device",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic Z3Vlc3Q6Z3Vlc3Q=",
+						"description": ""
+					},
+					{
+						"key": "x-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"password\": \"{{password}}\"\n}"
+				},
+				"description": "\t\t\t"
+			},
+			"response": []
+		}
+	]
+}
